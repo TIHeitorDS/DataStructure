@@ -1,32 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct disciplina {
-    int carga_horaria;
-    char nome[50];
-} Disciplina;
-
-typedef struct aluno {
+typedef struct alunos {
     char nome[50];
     int matricula;
-    Disciplina disciplina;
-} Aluno;
+    float IRA;
+} Alunos;
+
+void print(Alunos* aluno, int quant) {
+    for(int i = 0; i < quant; i++) {
+       printf("Nome: %s\n", aluno[i].nome);
+       printf("Matricula: %d\n", aluno[i].matricula);
+       printf("IRA: %.2f\n", aluno[i].IRA);
+       printf("\n");
+    }
+}
 
 int main () {
-    Aluno aluno;
+    int qtd_alunos;
+    printf("INforme a quantidade de alunos: ");
+    scanf("%d", &qtd_alunos);
 
-    printf("Informe o nome: ");
-    scanf("%[^\n]", aluno.nome);
+    Alunos* vetor_alunos = (Alunos*) malloc(qtd_alunos * sizeof(Alunos));
+    if(vetor_alunos == NULL) {
+        exit(1);
+    }
 
-    printf("Informe a matricula: ");
-    scanf("%d", &aluno.matricula);
+    for(int i = 0; i < qtd_alunos; i++) {
+       printf("Digite o nome do %d aluno: ", i + 1);
+       scanf(" %[^\n]s", vetor_alunos[i].nome);
+       printf("Digite o numero da matricula do %d aluno: ", i + 1);
+       scanf("%d", &vetor_alunos[i].matricula);
+       printf("Digite o IRA do %d aluno: ", i + 1);
+       scanf("%f", &vetor_alunos[i].IRA); 
+    }
 
-    printf("Infomre a carga horaria: ");
-    scanf("%d", &aluno.disciplina.carga_horaria);
-
-    printf("Informe a disciplina: ");
-    scanf("%[^\n]", aluno.disciplina.nome);
-    
+    printf("\n");
+    print(vetor_alunos, qtd_alunos);
+    free(vetor_alunos);
 
     return 0;
 }

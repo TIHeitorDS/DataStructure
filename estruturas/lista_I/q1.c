@@ -3,14 +3,14 @@
 typedef struct funcionarios {
     char nome[50], cargo[100];
     float salario;
-} Funcionarios;
+} Funcionario;
 
 int main() {
     int n;
     printf("Informe a quantidade de funcionarios: ");
     scanf("%d", &n);
 
-    Funcionarios funcionario[n];
+    Funcionario funcionario[n];
 
     for(int i = 0; i < n; i++) {
     printf("Informe o nome do %d funcionario: ", i + 1);
