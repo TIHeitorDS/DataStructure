@@ -13,7 +13,7 @@ void preenche(Funcionario* funcionario, int n) {
         printf("Informe o nome do funcionario: ");
         scanf(" %[^\n]s", funcionario[i].nome);
 
-        printf("Informe o salario do funcinario: ");
+        printf("Informe o salario do funcionario: ");
         scanf("%f", &funcionario[i].salario);
 
         printf("Informe o identificador do funcionario: ");
@@ -44,20 +44,20 @@ void altera_salario(Funcionario* funcionario, int n) {
 }
 
 void maior_menor_salario(Funcionario* funcionario, int n) {
-    int index = 0, key = 0;
-    float salario = 0, menorSalario = 0;
-    for(int l = 0; l < n; l++) {
-        if(funcionario[l].salario > salario) {
-            salario = funcionario[l].salario;
-            index = l;
-        } else {
-            menorSalario = funcionario[l].salario;
-            key = l;
+    int maior = 0, menor = 0;
+
+    for(int i = 0; i < n; i++) {
+        if(funcionario[i].salario < funcionario[menor].salario) {
+            menor = i;
+        }
+
+        if(funcionario[maior].salario < funcionario[i].salario) {
+            maior = i;
         }
     }
 
-    printf("Cargo com maior salario: %s (R$%f).\n", funcionario[index].cargo, salario);
-    printf("Cargo com menor salario: %s (R$%f).", funcionario[key].cargo, menorSalario);
+    printf("Cargo com maior salario: %s (R$%f).\n", funcionario[maior].cargo, funcionario[maior].salario);
+    printf("Cargo com menor salario: %s (R$%f).", funcionario[menor].cargo, funcionario[menor].salario);
 }
 
 int main() {

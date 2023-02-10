@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h> 
+#include <stdlib.h>
+#include <string.h>
 
 typedef struct pessoa {
     char nome[50];
@@ -39,20 +40,20 @@ void altera_idade(Pessoa* pessoa, int n) {
 }
 
 void maior_menor_idade(Pessoa* pessoa, int n) {
-    int index = 0, key = 0;
-    int idade = 0, menorIdade = 0;
-    for(int l = 0; l < n; l++) {
-        if(pessoa[l].idade > idade) {
-            idade = pessoa[l].idade;
-            index = l;
-        } else {
-            menorIdade = pessoa[l].idade;
-            key = l;
+    int maior = 0, menor = 0;
+
+    for(int i = 0; i < n; i++) {
+        if(pessoa[i].idade < pessoa[menor].idade) {
+            menor = i;
+        }
+
+        if(pessoa[maior].idade < pessoa[i].idade) {
+            maior = i;
         }
     }
 
-    printf("nome e idade da pessoa mais velha: %s (%d anos).\n", pessoa[index].nome, idade);
-    printf("nome e idade da pessoa mais nova: %s (%d anos).", pessoa[key].nome, menorIdade);
+    printf("Pessoa de maior idade: %s (%d anos).\n", pessoa[maior].nome, pessoa[maior].idade);
+    printf("Pessoa de menor idade: %s (%d anos).", pessoa[menor].nome, pessoa[menor].idade);
 }
 
 int main() {
