@@ -30,17 +30,23 @@ int main () {
                 if (mapa[i][j + 1] != mapa[i][j + 2]) {
                     j += 2;
                 } 
-            } else if (mapa[i][j] == '#' && mapa[i][j + 1] == '#') {
-                //if (mapa[i][j + 1] != mapa[i][j + 2] || j + 2 == NULL) break;
-                if (mapa[i][j + 1] != mapa[i - 1][j + 1]) {
-                    count++;
-                }
-            } else if (mapa[i][j] == '#') {
-                if (mapa[i][j] != mapa[i - 1][j]) {
-                    count++;
+            }
+
+            if(mapa[i][j] == '#' && mapa[i][j + 1] == '#') {
+                if(i == 0) {
+                    if(mapa[i][j + 1] != mapa[i + 1][j + 1]) count++;
+                } else {
+                    if(mapa[i][j + 1] != mapa[i - 1][j + 1] || mapa[i][j + 1] != mapa[i + 1][j + 1]) count++;
                 }
             }
         }
+    }
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%c ", mapa[i][j]);
+        }
+        printf("\n");
     }
 
     printf("%d", count);
