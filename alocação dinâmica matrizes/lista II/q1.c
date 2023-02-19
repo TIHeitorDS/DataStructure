@@ -24,29 +24,17 @@ int main () {
     }
 
     for (int i = 0; i < m; i++) {
-        for (int j = 0; j < (n - 1); j++) {
-            if (mapa[i][j] != mapa[i][j + 1]) {
+        for (int j = 0; j < n; j++) {
+            if(mapa[0][j] == '#' && mapa[0][j + 1] == '.' || mapa[0][j] == '.' && mapa[0][j + 1] == '#') {
                 count++;
-                if (mapa[i][j + 1] != mapa[i][j + 2]) {
-                    j += 2;
-                } 
             }
 
-            if(mapa[i][j] == '#' && mapa[i][j + 1] == '#') {
-                if(i == 0) {
-                    if(mapa[i][j + 1] != mapa[i + 1][j + 1]) count++;
-                } else {
-                    if(mapa[i][j + 1] != mapa[i - 1][j + 1] || mapa[i][j + 1] != mapa[i + 1][j + 1]) count++;
+            if(mapa[0][j] == mapa[0][j + 1]) {
+                if(mapa[0][j + 1] != mapa[1][j + 1] && mapa[0][j + 1] == mapa[1][j + 2]) {
+                    count++;
                 }
             }
         }
-    }
-
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) {
-            printf("%c ", mapa[i][j]);
-        }
-        printf("\n");
     }
 
     printf("%d", count);

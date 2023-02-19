@@ -6,9 +6,9 @@ typedef struct pessoa {
     char nome[50];
     int numero_documento;
     int idade;
-} Pessoa;
+} Produto;
 
-void preenche(Pessoa* pessoa, int n) {
+void preenche(Produto* pessoa, int n) {
     for(int i = 0; i < n; i++) {
         printf("Informe o nome do pessoa: ");
         scanf(" %[^\n]s", pessoa[i].nome);
@@ -21,7 +21,7 @@ void preenche(Pessoa* pessoa, int n) {
     }
 }
 
-void imprime(Pessoa* pessoa, int n) {
+void imprime(Produto* pessoa, int n) {
     printf("\n");
     for(int j = 0; j < n; j++) {
         printf("nome da pessoa: %s\n", pessoa[j].nome);
@@ -31,7 +31,7 @@ void imprime(Pessoa* pessoa, int n) {
 
 }
 
-void altera_idade(Pessoa* pessoa, int n) {
+void altera_idade(Produto* pessoa, int n) {
     printf("\n");
     for(int k = 0; k < n; k++) {
         printf("Infome a nova idade: ");
@@ -39,7 +39,7 @@ void altera_idade(Pessoa* pessoa, int n) {
     }
 }
 
-void maior_menor_idade(Pessoa* pessoa, int n) {
+void maior_menor_idade(Produto* pessoa, int n) {
     int maior = 0, menor = 0;
 
     for(int i = 0; i < n; i++) {
@@ -60,7 +60,7 @@ int main() {
     int n;
     printf("Informe a quantidade de pessoas: ");
     scanf("%d", &n);
-    Pessoa* pessoa = (Pessoa*) malloc(n * sizeof(Pessoa));
+    Produto* pessoa = (Produto*) malloc(n * sizeof(Produto));
 
     if(pessoa == NULL) {
         exit(1);
