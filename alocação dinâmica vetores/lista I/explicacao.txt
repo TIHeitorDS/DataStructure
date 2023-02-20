@@ -1,0 +1,57 @@
+questão 1:
+
+    /** int main **/
+    - as variáveis do tipo ponteiro 'int *genderArr, *viewArr' são alocadas dinâmicamente e ambas viram um vetor de tamanho 5
+    - no laço de repetição 'for' o usuário preenche esses vetores
+        -> caso o usuário digite 1, o genero é masculino, 2, feminino
+        -> após digitar o gênero, ele informe se o entrevistado gostou (1) ou não (2) do novo produto
+    - após preencher os vetores, estes e o tamanho do vetor são passados como argumentos para a função 'feedback'
+    /** void feedback **/
+    - as variáveis 'int countF, countM' contam a quantidade de pessoas do gênero feminino que gostaram e do gênero masculino que não gostaram, respectivamente
+    - as variáveis 'int xx, xy' vão calcular a porcentagem para o gênero masculino e feminino, respectivamente, conforme pede a questão
+    - no for ocorre a verificação
+        -> se gender[i] == 2 && view[i] == 1 for verdadeiro, significa que é uma pessoa do gênero feminino e gostou, depois 'countF' incrementa
+        -> senão se gender[i] == 1 && view[i] == 2, significa que é uma pessoa do gênero masculino e não gostou, depois 'countM' incrementa
+    - após o fim do laço de repetição, o cálculo da porcentagem é feito para homens (xx) e mulheres(xy)
+    - como saída, exibirá a porcentagem de pessoas do sexo masculino que nao gostaram (xx) e a porcentagem de pessoas do sexo feminino que gostaram (xy)
+    /** int main **/
+    - liberação da memória com o free, onde os vetores genderArr e viewArr são passados como argumento
+
+fim ;c
+
+questão 2:
+
+    /** int main **/
+    - primeiro o usuário informa quantidade da prova, e a informação é armazenada na variável 'int quantityOfQuestions'
+    - a variável 'int aux2' recebe a quantidade de questoes
+    - depois as variáveis do tipo ponteiro 'char *correctAnswer, *answerOfStudens' são alocadas dinâmicamente conforme a quantidade de quantidade de questões e viram um vetor
+        -> o vetor answerOfStudens será também multiplicado pela quantidade de estudantes (10), porque se forem 2 questões e 10 alunos, será corrigido ao todo 20 questões
+    - ocorre a verificação se um dos dois vetores é igual a NULL: correctAnswer == NULL || answerOfStudens == NULL
+    - o primeiro laço de repetição é responsável por preencher o vetor correctAnswer
+    - o segundo laço de repetição pega as alternativas marcadas pelos estudantes, só que com uma pequena peculiaridade
+        -> as variáveis 'int aux, aux2' vão controlar as respostas de determindado estudante
+        -> por exemplo, imaginemos que quantityOfQuestions = 2, quantityOfStudents = 2 e answerOfStudens = 4
+            -> como answerOfStudens é um vetor, significa que na posição 0 e 1 vão estar as respostas do estudante que está no vetor quantityOfStudents[0]
+            -> o mesmo acontece no quantityOfStudents[1] (última repetição), na posição 2 e 3 está as respostas desse estudante. E assim por diante...
+            -> para evitar que as respostas sejam colocadas no lugar errado, as variáveis 'aux e aux2' entram em ação!!! (sem elas, os valores das notas dos estudantes seriam sobrescritos)
+    - ok... depois dessa maracutaia, os valores de 'aux' e 'aux2' voltam a seram como antes: 0 e a quantidade de quantityOfQuestions, respectivamente
+    - no for seguinte a mesma lógica será utilizada, só que dessa vez para veficar as questões corretas de determinado estudante
+        -> as variáveis 'int result' 'int count' e 'int q' serão inicializadas a cada repetição
+            -> 'count' vai contar quantas questões o estudante acertou
+            -> 'q' vai auxiliar na correção questão
+            -> 'result' calcula a nota do aluno
+        -> os camandos dentro dos 'if' que vão da linha 64 à 78 vão calcular a nota por meio de simplificação, se for necessario
+            -> por exemplo se a 10 % quantityOfQuestions == 0, o calculo ocorre normalmente
+            -> se, por exemplo, 'quantityOfQuestions' = 3 e 'count' = 2, o calculo sera realizado na condição 'count % quantityOfQuestions != 0'
+                -> result = 10/3 * 2%3 = 6.6, e assim por diante...
+            -> se, por exemplo, 'quantityOfQuestions' = 3 e 'count' = 3, o calculo sera realizado na condição else
+                -> result = 3/3 * 10 = 10, e assim por diante...
+        -> depois dessa belíssima gambirra, o 'if (result >= 6)' verifica se o aluno foi aprovado
+            -> se for true, a variável 'int approved' incrementa
+        -> a cada repetição, terá como saída a nota do aluno
+    - após o fim do for, o calculo da porcentagem de alunos aprovados é feito:
+        -> approved = (approved * 100) / quantityOfStudents é 
+    - uma mensagem com a porcentagem de alunos aprovados será exibida
+    - liberação da memória com o free, onde os vetores correctAnswer e answerOfStudens são passados como argumento
+
+fim ;c
