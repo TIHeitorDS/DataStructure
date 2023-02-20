@@ -1,0 +1,8 @@
+As questões 1, 2, 3 pedem apenas para interpretar a saída de códigos já dados.
+
+Na questão 4, a seguinte lógica foi utilizada:
+- na função 'int main', o usuário fornece o 'lado do hexagono'
+- a função 'calcula_hexagono' passa como argumento o 'lado do hexagono' (l), o endereço de memória das variáveis x e y
+- a função 'void calcula_hexagono' recebe esses valores e realiza os cálculos utilizando a biblioteca math.h
+- como as variáveis 'float *area' e 'float *perimetro' são do tipo ponteiro, elas modificam o coteúdo de x e y na função 'int main()'
+- como saida, a area (x) e o perímetro (y) serão exibidos ao usuário
