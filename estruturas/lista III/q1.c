@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_VAGAS 5
+#define MAX_VAGAS 20
 #define MAX_TURMAS 2
 
 struct aluno
@@ -43,7 +43,7 @@ Turma *cria_turma(char id)
 
     turma->id = id;
 
-    turma->vagas = 3;
+    turma->vagas = MAX_VAGAS;
 
     for (int i = 0; i < MAX_VAGAS; i++)
     {
