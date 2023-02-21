@@ -1,0 +1,12 @@
+os códigos das questões 1 e 2 foram feitos e corrigidas durante aula de laboratório, utilizando a mesma lógica da professora Cibely.
+
+questão 3:
+
+    /** int main **/
+    - uma matriz só para preencher o nome da fruta foi feita
+    - depois criei um vetor dinâmico para preecher o preço da respectiva fruta
+	    -> os valores serão associados corretamente, pois quando matFruta estiver no index 0, preco também estará
+    - depois que o usuario preencher os dados, realoquei a matriz para não desperdiçar memória
+    - como saída, será impresso o nome e preço da fruta
+
+fim ;c

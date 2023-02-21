@@ -1,41 +1,63 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main () {
-    int quantidadeFrutas;
-    int colunas = 50;
+int main()
+{
+    int qnt = 0;
+    float *preco;
+    int colunas = 100;
+
     printf("Informe a quantidade de frutas: ");
-    scanf("%d", &quantidadeFrutas);
+    scanf("%d", &qnt);
 
-    char **frutas = (char**) malloc(quantidadeFrutas * sizeof(char*));
-    if (frutas == NULL) {
+    char **matFrutas = (char **)malloc(qnt * sizeof(char *));
+    for (int i = 0; i < qnt; i++)
+    {
+        matFrutas[i] = (char *)malloc(colunas * sizeof(char));
+    }
+
+    if (matFrutas == NULL)
+    {
+        printf("Memoria insuficiente!");
         exit(1);
     }
-    for (int i = 0; i < quantidadeFrutas; i++) {
-        frutas[i] = (char*) malloc(colunas * sizeof(char));
-    }
 
+    preco = (float *)malloc(qnt * sizeof(float));
 
-    float *precos = (float*) malloc(quantidadeFrutas * sizeof(float));
-    if (precos == NULL) {
+    if (preco == NULL)
+    {
+        printf("Memoria insuficiente!");
         exit(1);
     }
-    printf("Informe as frutas e seu valor: \n");
-    for (int i = 0; i < quantidadeFrutas; i++) {
-        scanf(" %[^\n]s", frutas[i]);
-        scanf("%f", &precos[i]);
+
+    // preencher
+    for (int i = 0; i < qnt; i++)
+    {
+        printf("Informe o nome da fruta: ");
+        scanf(" %[^\n]s", matFrutas[i]);
+        printf("preco: ");
+        scanf("%f", &preco[i]);
+        printf("\n");
     }
 
-    for (int i = 0; i < quantidadeFrutas; i++) {
-        free(frutas[i]);
+    for (int i = 0; i < qnt; i++)
+    {
+        matFrutas[i] = (char *)realloc(matFrutas[i], sizeof(char));
     }
 
-    for (int i = 0; i < colunas; i++) {
-        frutas[i] = (char*) realloc(frutas[i], colunas * sizeof(char));
+    // imprime
+    for (int i = 0; i < qnt; i++)
+    {
+        printf("Nome: %s\tPreco: R$%.2f\n", matFrutas[i], preco[i]);
     }
 
-    free(frutas);
-    free(precos);
+    for (int i = 0; i < qnt; i++)
+    {
+        free(matFrutas[i]);
+    }
+
+    free(matFrutas);
+    free(preco);
 
     return 0;
 }
