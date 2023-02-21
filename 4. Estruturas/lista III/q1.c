@@ -80,10 +80,10 @@ void lanca_notas(Turma *turma)
 {
     float nota = 0, media = 0;
     for (int i = 0; i < MAX_VAGAS; i++)
-    { // percorre o vetor de Alunps
+    { // percorre o vetor de Alunos
         media = 0;
         if (turma->alunos[i] != NULL && turma->alunos[i]->notas[0] == 0)
-        { // verifica se ha vagas disponiveis e se falta alunos receber as notas
+        { // verifica se ha vagas preenchidas e se falta alunos receber as notas
             printf("\nMatricula: %d\tAluno: %s\n", turma->alunos[i]->mat, turma->alunos[i]->nome);
             for (int j = 0; j < 3; j++)
             { // preenche as notas de um aluno
@@ -164,7 +164,8 @@ int main(void)
     Turma *t = (Turma *)malloc(sizeof(Turma)); // retorna a turma que o usuario procura
 
     int op, index = 0, mat = 0; // index vai controlar o limite do vetor turmas
-    char id, nome[81];
+    char id, *nome;
+    nome = (char *)malloc(81 * sizeof(char));
     printf("Bem-vindo ao Programa de Gerenciamento de Turmas!\n");
     printf("Este programa gerencia as turmas ofertadas, fornecendo as funcionalidades de matricula, lancamento de notas e listagem de alunos.\n");
     printf("Autor: Heitor Claudino\tVersao: 1.0\n");
@@ -239,7 +240,7 @@ int main(void)
                     printf("Digite o nome: ");
                     scanf(" %[^\n]s", nome);
 
-                    matricula_aluno(turmas[i], mat, &nome);
+                    matricula_aluno(turmas[i], mat, nome);
                     printf("Aluno matriculado com sucesso!");
                     break;
                 }
@@ -266,7 +267,7 @@ int main(void)
                 if (turmas[i]->id == id)
                 {
                     if (turmas[i]->alunos[0] != NULL)
-                    {
+                    { // verifica se o aluno ja tem nota
                         lanca_notas(turmas[i]);
                         break;
                     }
@@ -277,6 +278,7 @@ int main(void)
                     }
                 }
             }
+
             break;
         case 5:
             if (turmas[0] == NULL)
@@ -359,6 +361,7 @@ int main(void)
 
     free(turmas);
     free(t);
+    free(nome);
 
     return 0;
 }

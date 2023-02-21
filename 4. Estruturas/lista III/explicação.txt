@@ -1,0 +1,45 @@
+questão 1:
+
+    //** int main **//
+    - aqui nesta parte fica o menu do programa que espera a opção do usuário e se recepete enquanto a opção for diferente de 8 (encerra o programa)
+    - a variavel 'index' é muito importante é reponsável por o limite do vetor turmas
+        -> sempre que uma nova turma nova é criada, 'index' inclementa e quando seu valor é igual a MAX_TURMAS, não é possível realizar alguns funcionalidades do programa
+    - no 'switch', os 'case' são responsáveis por chamar alguma função de acordo com a opção do usuário
+    - algumas funcionalidades tem restrições
+        -> se nenhuma turma tiver sido cadastrada, as opções 2, 3, 4, 5 e 6 serão travadas
+        -> se a turma não existir, as opções 3, 4, 5 e 7 serão travadas
+    - nos 'case' que solicita o 'id' da turma, sempre ocorre uma verificação pra ver se ela existe, exceto no case 7: a verificação é feita na função 'procura_turma'
+    
+    //** Turma *cria_turma **//
+    - aqui uma variável do tipo Turma será retornada e salva no vetor 'turmas'
+
+    //** void matricula_aluno **//
+    - sempre que um aluno é matriculado, as vagas diminuem
+    - o vetor 'alunos' é alocado dinâmicamente
+        -> se o vetor de alunos estiver 'NULL' estão ele será preenchido
+            -> 'turma->alunos[j]->mat' e 'turma->alunos[j]->nome' recebem a matricula e o nome que são passados como argumento da função
+        -> apos ser preenchido, o laço de repetição acaba
+    
+    //** void lanca_notas **//
+    - aqui o vetor de alunos será percorrido
+    - isso so acontece quando tiver vagas preenchidas e se o aluno não tiver nota
+        -> se turma->alunos[i]->notas[0] == 0 significa que o aluno ta sem nota
+    - a variável 'nota' é lida e soma com a 'media' três vezes para calcular a media
+
+    //** void imprime_alunos **//
+    - enquanto o vetor de alunos for diferente de 'NULL', os dados deles serão impressos
+        -> isso porque o vetor estaria preenchido, e assim o laço de repetição não mostra lixo
+
+    //** void imprime_turmas **//
+        - aqui todas as turmas criadas serão impressas
+            -> a variável local 'n' controla a quantidade de turmas existentes
+        - em cada turma, os alunos matriculados também serão exibidos caso tenha
+
+    //** Turma *procura_turma **//
+        - criei uma variável tipo Turma (já que é uma função com retorno) e a aloquei dinâmicamente
+        - se a turma existir, como já expliquei, a variável 'turma' recebe 'turmas' que tenha o mesmo 'id'
+        - a função retorna turma e lá na 'int main' a variável 't' a recebe
+
+algumas coisas estão comentadas no própio código
+
+fim ;c
