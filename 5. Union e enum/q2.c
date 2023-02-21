@@ -1,16 +1,19 @@
 #include <stdio.h>
 
-typedef union tipo {
+typedef union tipo
+{
     char t[50];
 } Tipo;
 
-typedef struct produto {
+typedef struct produto
+{
     char nome[50];
     float preco;
     Tipo tipo
 } Produto;
 
-void cadastar_produto(Produto* p) {
+void cadastar_produto(Produto *p)
+{
     printf("Informe o nome do produto: ");
     scanf(" %[^\n]s", p->nome);
 
@@ -21,8 +24,8 @@ void cadastar_produto(Produto* p) {
     scanf(" %[^\n]s", p->tipo.t);
 }
 
-
-int main(void) {
+int main(void)
+{
     Produto p;
     cadastar_produto(&p);
 

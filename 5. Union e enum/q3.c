@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-typedef enum mes {
+typedef enum mes
+{
     zero,
     janeiro,
     fevereiro,
@@ -16,15 +17,17 @@ typedef enum mes {
     dezembro
 } Mes;
 
-typedef struct data {
+typedef struct data
+{
     int dia;
     Mes mes;
     int ano;
 } Data;
 
-int main() {
+int main()
+{
     Data data;
-    int mes; 
+    int mes;
 
     printf("Informe o dia: ");
     scanf("%d", &data.dia);
@@ -72,7 +75,7 @@ int main() {
         break;
     case 12:
         printf("%d/dez/%d", data.dia, data.ano);
-        break; 
+        break;
     default:
         break;
     }

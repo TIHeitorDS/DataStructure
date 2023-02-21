@@ -1,0 +1,28 @@
+questão 1:
+
+    - nessa questão eu criei uma função 'void cadastar_produto' que aponta para a variável 'pessoa' (que está na int main)
+        -> nessa função o usuário infomr o nome, idade e genero da pessoa
+    - na função 'int main' um switch recebe o número do genero da pessoa (isso porque Genero é do tipo enum)
+     -> se for 1, ele imprime o nome, idade e genero masculino
+     -> se for 2, ele imprime o nome, idade e genero feminino
+
+fim ;c
+
+
+questão 2:
+
+    - a logica é parecida com a questão 1, mas aqui eu usei o union
+    - na função 'cadastar_produto' o usuário informa o nome, preço e tipo
+    - na função principal, esses dados são impressoas
+
+fim ;c
+
+
+questão 3:
+
+    - nessa qustão usei o enum para retornar o mês do ano
+        -> como a contagem começa em zero, então antes de 'janeiro' criei o 'zero'
+    - na função principal o usuário informa o dia, mês e ano (declaradas na struct Data)
+    - o switch recebe data.mes (numero inteiro) e imprime a data conforme o mês
+
+fim ;c

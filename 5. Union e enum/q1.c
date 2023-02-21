@@ -1,18 +1,21 @@
 #include <stdio.h>
 
-typedef enum genero {
+typedef enum genero
+{
     neutro,
     masculino,
     feminino
 } Genero;
 
-typedef struct pessoa {
+typedef struct pessoa
+{
     char nome[50];
     int idade;
     Genero genero;
 } Produto;
 
-void cadastar_produto(Produto* p) {
+void cadastar_produto(Produto *p)
+{
     printf("Informe o nome da pessoa: ");
     scanf(" %[^\n]s", p->nome);
 
@@ -20,11 +23,11 @@ void cadastar_produto(Produto* p) {
     scanf("%d", &p->idade);
 
     printf("Informe seu genero:\n1. masculino\n2. feminino");
-    scanf("%d", (int*)&p->genero);
+    scanf("%d", (int *)&p->genero);
 }
 
-
-int main(void) {
+int main(void)
+{
     Produto pessoa;
     cadastar_produto(&pessoa);
 
