@@ -1,0 +1,10 @@
+questao 1:
+
+    //** int main **//
+    - solicitei a quantidade de funcionarios para o usuario
+    - criei um vetor do tipo 'Funcionario' (struct) do tamanho que o usuario forneceu
+    - solicitei o nome, salario, cargo pra preencher
+        -> as informações são salvas em cada vetor 'funcionario'
+    - por fim imprimi o nome, salario e o cargo do(s) funcionario(s)
+
+fim ;c

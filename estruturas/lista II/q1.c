@@ -1,15 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct funcionarios {
+typedef struct funcionarios
+{
     char nome[50];
     float salario;
     int identificador;
     char cargo[50];
 } Funcionario;
 
-void preenche(Funcionario** funcionario, int n) {
-    for(int i = 0; i < n; i++) {
+void preenche(Funcionario **funcionario, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
         printf("Informe o nome do funcionario: ");
         scanf(" %[^\n]s", funcionario[i]->nome);
 
@@ -24,9 +27,11 @@ void preenche(Funcionario** funcionario, int n) {
     }
 }
 
-void imprime(Funcionario** funcionario, int n) {
+void imprime(Funcionario **funcionario, int n)
+{
     printf("\n");
-    for(int j = 0; j < n; j++) {
+    for (int j = 0; j < n; j++)
+    {
         printf("Nome do funcionario: %s\n", funcionario[j]->nome);
         printf("Salario do funcionario: %f\n", funcionario[j]->salario);
         printf("Identificador do funcionario: %d\n", funcionario[j]->identificador);
@@ -34,23 +39,29 @@ void imprime(Funcionario** funcionario, int n) {
     }
 }
 
-void altera_salario(Funcionario** funcionario, int n) {
+void altera_salario(Funcionario **funcionario, int n)
+{
     printf("\n");
-    for(int k = 0; k < n; k++) {
+    for (int k = 0; k < n; k++)
+    {
         printf("Infome o novo valor do salario: ");
         scanf("%f", &funcionario[k]->salario);
     }
 }
 
-void maior_menor_salario(Funcionario** funcionario, int n) {
+void maior_menor_salario(Funcionario **funcionario, int n)
+{
     int maior = 0, menor = 0;
 
-    for(int i = 0; i < n; i++) {
-        if(funcionario[i]->salario < funcionario[menor]->salario) {
+    for (int i = 0; i < n; i++)
+    {
+        if (funcionario[i]->salario < funcionario[menor]->salario)
+        {
             menor = i;
         }
 
-        if(funcionario[maior]->salario < funcionario[i]->salario) {
+        if (funcionario[maior]->salario < funcionario[i]->salario)
+        {
             maior = i;
         }
     }
@@ -59,17 +70,20 @@ void maior_menor_salario(Funcionario** funcionario, int n) {
     printf("Cargo com menor salario: %s (R$%f).", funcionario[menor]->cargo, funcionario[menor]->salario);
 }
 
-int main() {
+int main()
+{
     int n;
     printf("Informe a quantidade de funcionarios: ");
     scanf("%d", &n);
-    Funcionario** funcionario = (Funcionario**) malloc(n * sizeof(Funcionario*));
+    Funcionario **funcionario = (Funcionario **)malloc(n * sizeof(Funcionario *));
 
-    for(int j = 0; j < funcionario; j++) {
-        funcionario[j] = (Funcionario*) malloc(n * sizeof(Funcionario));
+    for (int j = 0; j < funcionario; j++)
+    {
+        funcionario[j] = (Funcionario *)malloc(n * sizeof(Funcionario));
     }
 
-    if(funcionario == NULL) {
+    if (funcionario == NULL)
+    {
         exit(1);
     }
 
@@ -78,7 +92,8 @@ int main() {
     altera_salario(funcionario, n);
     maior_menor_salario(funcionario, n);
 
-    for(int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         free(funcionario[i]);
     }
 

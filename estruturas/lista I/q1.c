@@ -1,30 +1,34 @@
 #include <stdio.h>
 
-typedef struct funcionarios {
+typedef struct funcionarios
+{
     char nome[50], cargo[100];
     float salario;
 } Funcionario;
 
-int main() {
+int main()
+{
     int n;
     printf("Informe a quantidade de funcionarios: ");
     scanf("%d", &n);
 
     Funcionario funcionario[n];
 
-    for(int i = 0; i < n; i++) {
-    printf("Informe o nome do %d funcionario: ", i + 1);
-    scanf(" %[^\n]", funcionario[i].nome);
+    for (int i = 0; i < n; i++)
+    {
+        printf("Informe o nome do %d funcionario: ", i + 1);
+        scanf(" %[^\n]", funcionario[i].nome);
 
-    printf("Informe o salario do %d funcionario: ", i + 1);
-    scanf("%f", &funcionario[i].salario);
+        printf("Informe o salario do %d funcionario: ", i + 1);
+        scanf("%f", &funcionario[i].salario);
 
-    printf("Informe o cargo do %d funcionario: ", i + 1);
-    scanf(" %[^\n]", funcionario[i].cargo);
+        printf("Informe o cargo do %d funcionario: ", i + 1);
+        scanf(" %[^\n]", funcionario[i].cargo);
     }
 
     printf("\n");
-    for(int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         printf("Informe o nome do %d funcionario: %s\n", i + 1, funcionario[i].nome);
         printf("Informe o salario do %d funcionario: %f\n", i + 1, funcionario[i].salario);
         printf("Informe o cargo do %d funcionario: %s\n", i + 1, funcionario[i].cargo);

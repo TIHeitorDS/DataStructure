@@ -1,0 +1,32 @@
+questão 1:
+
+    //** int main **//
+    - declarei uma variável do tipo 'Funcionario' (struct) e a aloquei para ser uma matriz do tamanho da quantidade de funcionario que o usuário fornece
+    - chamei as funções, conforme pede a questão, e passei como parametro a variável 'funcionario' e quantidade de funcionarios
+    - após cada ação das funções (explicação logo abaixo) libero a memoria com o free
+
+    //** void preenche **// e //** void imprime **//
+    - essas duas funções são semelhantes, com a diferença de que a primeira solicita os dados do funcionario ao usuário conforme a quantidade 'n' e a outra imprime
+
+    //** void altera_salario **//
+    - basicamente solicita um novo salario do(s) funcionario(s) e sobreescreve o antigo
+
+    //** void maior_menor_salario **//
+    - nesta parte as variaveis 'maior' e 'menor' vao salvar o indice do(s) funcionario(s) com maior e menor salario
+        -> por exemplo, vamos dois funcionarios: o 0 com o salario de 150 e o 1 com 145
+            -> quando começa o laço (i = 0), 'funcionario[0]->salario' é igual a 150
+            -> no primeiro 'if', menor é igual a 0, entao 'funcionario[menor]->salario = 150' (não entra na condiçao)
+            -> no segundo 'if', maior é igual a 0, entao 'funcionario[maior]->salario = 150' (não entra na condiçao)
+            -> quando 'i = 1', 'funcionario[i]->salario' vai ser igual a 145
+            -> no primeiro 'if', como 'funcionario[i]->salario' é menor que 'funcionario[menor]->salario', entao 'menor' recebe o valor do indice 'i'
+            -> no segundo 'if', 'funcionario[maior]->salario' continua com o indice 0, entao seu valor contua como 150
+        -> e assim por diante...
+
+fim ;c
+
+
+questão 2:
+
+    - aqui é mesma lógica da questão anterior, a diferença é que foi usado alocação dinâmica na variável 'pessoa'
+
+fim ;c
