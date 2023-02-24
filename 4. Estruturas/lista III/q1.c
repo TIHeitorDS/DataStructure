@@ -135,11 +135,6 @@ Turma *procura_turma(Turma **turmas, int n, char id)
         exit(1);
     }
 
-    for (int i = 0; i < MAX_VAGAS; i++)
-    {
-        turma->alunos[i] = (Aluno *)malloc(sizeof(Aluno));
-    }
-
     for (int j = 0; j <= n; j++)
     {
         if (j == n)
@@ -168,14 +163,12 @@ int main(void)
     nome = (char *)malloc(81 * sizeof(char));
     printf("Bem-vindo ao Programa de Gerenciamento de Turmas!\n");
     printf("Este programa gerencia as turmas ofertadas, fornecendo as funcionalidades de matricula, lancamento de notas e listagem de alunos.\n");
-    printf("Autor: Heitor Claudino\tVersao: 1.0\n");
-    while (op != 8)
+    printf("Autor: Heitor Claudino\tVersao: 1.0\n\n");
+    while (op != 7)
     {
-        printf("\n\nMenu:\n");
-        printf("1 - Criar turma\n2 - Listar turmas\n3 - Matricular Aluno\n4 - Lancar notas\n5 - Listar alunos\n6 - Listar turmas\n7 - Procurar uma turma\n8 - Sair\n\nDigite sua opcao: ");
+        printf("\nMenu:\n");
+        printf("1 - Criar turma\n2 - Listar turmas\n3 - Matricular Aluno\n4 - Lancar notas\n5 - Listar alunos\n6 - Procurar uma turma\n7 - Sair\n\nDigite sua opcao: ");
         scanf("%d", &op);
-
-        printf("\n");
         switch (op)
         {
         case 1:
@@ -197,7 +190,7 @@ int main(void)
         case 2:
             if (turmas[0] == NULL)
             {
-                printf("Nao ha turmas cadastradas!\n");
+                printf("\nNao ha turmas cadastradas!\n");
                 break;
             }
 
@@ -319,16 +312,6 @@ int main(void)
                 printf("Nao ha turmas cadastradas!\n");
                 break;
             }
-            printf("Imprimindo dados das turmas...\n");
-            imprime_turmas(turmas, index);
-
-            break;
-        case 7:
-            if (turmas[0] == NULL)
-            {
-                printf("Nao ha turmas cadastradas!\n");
-                break;
-            }
             printf("Procurando por uma turma...\n");
             printf("Digite o id da turma: ");
             scanf(" %c", &id);
@@ -350,7 +333,7 @@ int main(void)
             }
 
             break;
-        case 8:
+        case 7:
             printf("Obrigado por usar este programa!");
 
             break;
@@ -358,6 +341,15 @@ int main(void)
             break;
         }
     }
+
+    for (int i = 0; i < MAX_TURMAS; i++)
+    {
+        for (int j = 0; j < MAX_VAGAS; j++)
+        {
+            free(turmas[i]->alunos[j]);
+        }
+    }
+    
 
     free(turmas);
     free(t);
