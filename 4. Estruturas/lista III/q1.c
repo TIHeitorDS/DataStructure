@@ -65,7 +65,8 @@ void matricula_aluno(Turma *turma, int mat, char *nome)
 
             for (int k = 0; k < 3; k++)
             {
-                turma->alunos[j]->notas[k] = 0; // inicializa as notas com zero
+                turma->alunos[j]->notas[k] = 0.0; // inicializa as notas com zero
+                turma->alunos[j]->media = 0.0; // inicializa a media com zero
             }
 
             turma->alunos[j]->mat = mat;
@@ -82,7 +83,7 @@ void lanca_notas(Turma *turma)
     for (int i = 0; i < MAX_VAGAS; i++)
     { // percorre o vetor de Alunos
         media = 0;
-        if (turma->alunos[i] != NULL && turma->alunos[i]->notas[0] == 0)
+        if (turma->alunos[i] != NULL && turma->alunos[i]->notas[0] == 0.0)
         { // verifica se ha vagas preenchidas e se falta alunos receber as notas
             printf("\nMatricula: %d\tAluno: %s\n", turma->alunos[i]->mat, turma->alunos[i]->nome);
             for (int j = 0; j < 3; j++)
@@ -127,11 +128,11 @@ void imprime_turmas(Turma **turmas, int n)
 }
 
 Turma *procura_turma(Turma **turmas, int n, char id)
-{
+{ // essa função recebe o vetor turmas
     for (int j = 0; j < n; j++)
     {
         if (turmas[j]->id == id)
-            return turmas[j];
+            return turmas[j]; // se o id que o usuario digitou for igual ao id de algum vetor, retorna ele
     }
     return NULL;
 }
@@ -157,7 +158,7 @@ int main(void)
         case 1:
             if (index >= MAX_TURMAS)
             {
-                printf("Nao e possivel criar mais turmas!");
+                printf("\nNao e possivel criar mais turmas!\n");
                 break;
             }
 
@@ -166,7 +167,8 @@ int main(void)
             scanf(" %c", &id);
 
             turmas[index] = cria_turma(id);
-            printf("\nTurma %c criada com sucessso!", turmas[index]->id);
+
+            printf("Turma %c criada com sucessso!\n", turmas[index]->id);
             index++;
 
             break;
@@ -178,6 +180,7 @@ int main(void)
             }
 
             printf("Listando turmas...\n");
+
             for (int k = 0; k < index; k++)
             {
                 printf("Turma %c - %d vagas disponiveis\n", turmas[k]->id, turmas[k]->vagas);
@@ -187,7 +190,7 @@ int main(void)
         case 3:
             if (turmas[0] == NULL)
             {
-                printf("Nao ha turmas cadastradas!\n");
+                printf("\nNao ha turmas cadastradas!\n");
                 break;
             }
 
@@ -197,7 +200,7 @@ int main(void)
 
             t = procura_turma(turmas, index, id);
 
-            if (t != NULL)
+            if (t != NULL && t->vagas != 0)
             {
                 printf("Digite a matricula: ");
                 scanf("%d", &mat);
@@ -206,53 +209,47 @@ int main(void)
 
                 matricula_aluno(t, mat, nome);
                 printf("\nAluno matriculado com sucesso!");
-            }
-            else
-            {
-                printf("Turma inexistente!");
-            }
+            } 
+            else if (t != NULL && t->vagas != 0) printf ("Nao ha mais vagas para esta turma!\n");
+            else printf("\nTurma inexistente!\n");
+
             break;
         case 4:
             if (turmas[0] == NULL)
             {
-                printf("Nao ha turmas cadastradas!\n");
+                printf("\nNao ha turmas cadastradas!\n");
                 break;
             }
+
             printf("Lancando notas...\n");
             printf("Digite o id da turma: ");
             scanf(" %c", &id);
 
             t = procura_turma(turmas, index, id);
+            
+            if (t != NULL && t->alunos[0] == NULL) printf("Nao ha alunos matriculados nesta turma!\n");
+            else if (t != NULL) lanca_notas(t); 
 
-            if (t != NULL)
-            {
-                lanca_notas(t);
-            }
-            else
-            {
-                printf("\nTurma inexistente!\n");
-            }
+            else printf("\nTurma inexistente!\n");
+
             break;
         case 5:
             if (turmas[0] == NULL)
             {
-                printf("Nao ha turmas cadastradas!\n");
+                printf("\nNao ha turmas cadastradas!\n");
                 break;
             }
+
             printf("Listando alunos..\n");
             printf("Digite o id da turma: ");
             scanf(" %c", &id);
 
             t = procura_turma(turmas, index, id);
 
-            if (t != NULL)
-            {
-                imprime_alunos(t);
-            }
-            else
-            {
-                printf("\nTurma inexistente!\n");
-            }
+            if (t != NULL && t->alunos[0] != NULL) imprime_alunos(t);
+            else if (t != NULL && t->alunos[0] == NULL) printf("Nao ha alunos matriculados nesta turma!\n");
+            else printf("\nTurma inexistente!\n");
+
             break;
         case 6:
             printf("Obrigado por usar este programa!");

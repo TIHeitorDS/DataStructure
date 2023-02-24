@@ -2,12 +2,12 @@ questão 1:
 
     //** int main **//
     - aqui nesta parte fica o menu do programa que espera a opção do usuário e se recepete enquanto a opção for diferente de 8 (encerra o programa)
-    - a variavel 'index' é muito importante é reponsável por o limite do vetor turmas
+    - a variavel 'index' é muito importante pois é reponsável acesssar cada vetor turmas
         -> sempre que uma nova turma nova é criada, 'index' inclementa e quando seu valor é igual a MAX_TURMAS, não é possível realizar alguns funcionalidades do programa
     - no 'switch', os 'case' são responsáveis por chamar alguma função de acordo com a opção do usuário
     - algumas funcionalidades tem restrições
-        -> se nenhuma turma tiver sido cadastrada, as opções 2, 3, 4, 5 e 6 serão travadas
-        -> se a turma não existir, as opções 3, 4, 5 e 7 serão travadas
+        -> se nenhuma turma tiver sido cadastrada, as opções 2, 3, 4 e 5 serão travadas
+        -> se a turma não existir, as opções 3, 4 e 5 serão travadas
     - nos 'case' que solicita o 'id' da turma, sempre ocorre uma verificação pra ver se ela existe, exceto no case 7: a verificação é feita na função 'procura_turma'
     
     //** Turma *cria_turma **//
@@ -36,9 +36,8 @@ questão 1:
         - em cada turma, os alunos matriculados também serão exibidos caso tenha
 
     //** Turma *procura_turma **//
-        - criei uma variável tipo Turma (já que é uma função com retorno) e a aloquei dinâmicamente
-        - se a turma existir, como já expliquei, a variável 'turma' recebe 'turmas' que tenha o mesmo 'id'
-        - a função retorna turma e lá na 'int main' a variável 't' a recebe
+        - verifica se a turma que o usuario procura existe e retorna ela
+        - o vetor t lá na int main recebe esse return
 
 algumas coisas estão comentadas no própio código
 
