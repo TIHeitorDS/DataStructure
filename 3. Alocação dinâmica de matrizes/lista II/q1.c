@@ -39,36 +39,23 @@ int main()
         {
             if (linha == 0)
             {
-                if ((mapa[linha][coluna] == '#' && mapa[linha][coluna + 1] == '.') || (mapa[linha][coluna] == '#' && mapa[linha][coluna - 1] == '.'))
-                {
-                    count++;
-                }
-                else if ((mapa[linha][coluna] == '#' && mapa[linha + 1][coluna] == '.'))
-                {
-                    count++;
-                }
+                if (mapa[linha][coluna] == '#' && coluna - 1 < 0) count++;
+                else if ((mapa[linha][coluna] == '#' && mapa[linha][coluna + 1] == '.') || (mapa[linha][coluna] == '#' && mapa[linha][coluna - 1] == '.')) count++;
+                else if ((mapa[linha][coluna] == '#' && mapa[linha + 1][coluna] == '.')) count++;
+                else if (mapa[linha][coluna] == '#' && coluna + 1 == n) count++;
             } 
             else if (linha > 0 && linha < m - 1)
             {
-                if ((mapa[linha][coluna] == '#' && mapa[linha][coluna + 1] == '.') || (mapa[linha][coluna] == '#' && mapa[linha][coluna - 1] == '.'))
-                {
-                    count++;
-                }
-                else if ((mapa[linha][coluna] == '#' && mapa[linha + 1][coluna] == '.') || (mapa[linha][coluna] == '#' && mapa[linha - 1][coluna] == '.'))
-                {
-                    count++;
-                }
+                if ((mapa[linha][coluna] == '#' && coluna - 1 < 0 )|| (mapa[linha][coluna] == '#' && coluna + 1 == n)) count++;
+                else if ((mapa[linha][coluna] == '#' && mapa[linha][coluna + 1] == '.') || (mapa[linha][coluna] == '#' && mapa[linha][coluna - 1] == '.')) count++;
+                else if ((mapa[linha][coluna] == '#' && mapa[linha + 1][coluna] == '.') || (mapa[linha][coluna] == '#' && mapa[linha - 1][coluna] == '.')) count++;
             }
             else if (linha == m - 1)
             {
-                if ((mapa[linha][coluna] == '#' && mapa[linha][coluna + 1] == '.') || (mapa[linha][coluna] == '#' && mapa[linha][coluna - 1] == '.'))
-                {
-                    count++;
-                }
-                else if ((mapa[linha][coluna] == '#' && mapa[linha - 1][coluna] == '.'))
-                {
-                    count++;
-                }  
+                if ((mapa[linha][coluna] == '#' && coluna - 1 < 0) || (mapa[linha][coluna] == '#' && linha + 1  == m)) count++;
+                else if ((mapa[linha][coluna] == '#' && mapa[linha][coluna + 1] == '.') || (mapa[linha][coluna] == '#' && mapa[linha][coluna - 1] == '.')) count++;
+                else if ((mapa[linha][coluna] == '#' && mapa[linha - 1][coluna] == '.')) count++;
+                else if ((mapa[linha][coluna] == '#' && coluna + 1 == n)) count++;
             }
             
         }

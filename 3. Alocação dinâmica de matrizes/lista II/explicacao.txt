@@ -4,11 +4,14 @@ questão 1:
     - se a linha for igual a 0
         -> checa se há costas dos lados
         -> senão checa se há costas abaixo
+        -> senão verifica as bordas
     - se a linha for 0 < linha < m - 1 (m é variável que recebe a quantidade de linha do usuário)
         -> checa se há costas dos lados
         -> senão checa se há costas abaixo ou acima
+        -> senão verifica as bordas
     - se a linha for igual a m - 1
         -> checa se há costas dos lados
         -> senão checa se há costas acima
+        -> senão verifica as bordas
 
 fim ;c
