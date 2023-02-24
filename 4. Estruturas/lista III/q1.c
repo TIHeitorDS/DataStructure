@@ -128,30 +128,12 @@ void imprime_turmas(Turma **turmas, int n)
 
 Turma *procura_turma(Turma **turmas, int n, char id)
 {
-    Turma *turma = (Turma *)malloc(sizeof(Turma));
-
-    if (turma == NULL)
+    for (int j = 0; j < n; j++)
     {
-        exit(1);
-    }
-
-    for (int j = 0; j <= n; j++)
-    {
-        if (j == n)
-        {
-            printf("\nTurma inexistente!\n");
-
-            return 0;
-        }
-
         if (turmas[j]->id == id)
-        {
-            turma = turmas[j];
-            break;
-        }
+            return turmas[j];
     }
-
-    return turma;
+    return NULL;
 }
 
 int main(void)
@@ -163,12 +145,13 @@ int main(void)
     nome = (char *)malloc(81 * sizeof(char));
     printf("Bem-vindo ao Programa de Gerenciamento de Turmas!\n");
     printf("Este programa gerencia as turmas ofertadas, fornecendo as funcionalidades de matricula, lancamento de notas e listagem de alunos.\n");
-    printf("Autor: Heitor Claudino\tVersao: 1.0\n\n");
-    while (op != 7)
+    printf("Autor: Heitor Claudino\tVersao: 1.5\n\n");
+    while (op != 6)
     {
         printf("\nMenu:\n");
-        printf("1 - Criar turma\n2 - Listar turmas\n3 - Matricular Aluno\n4 - Lancar notas\n5 - Listar alunos\n6 - Procurar uma turma\n7 - Sair\n\nDigite sua opcao: ");
+        printf("1 - Criar turma\n2 - Listar turmas\n3 - Matricular Aluno\n4 - Lancar notas\n5 - Listar alunos\n6 - Sair\n\nDigite sua opcao: ");
         scanf("%d", &op);
+        system("cls");
         switch (op)
         {
         case 1:
@@ -212,33 +195,22 @@ int main(void)
             printf("Digite o id da turma: ");
             scanf(" %c", &id);
 
-            for (int i = 0; i <= index; i++)
+            t = procura_turma(turmas, index, id);
+
+            if (t != NULL)
             {
-                if (i == index)
-                {
-                    printf("\nTurma inexistente!\n");
-                    break;
-                }
+                printf("Digite a matricula: ");
+                scanf("%d", &mat);
+                printf("Digite o nome: ");
+                scanf(" %[^\n]s", nome);
 
-                if (turmas[i]->vagas == 0)
-                {
-                    printf("Nao ha mais vagas para esta turma!");
-                    break;
-                }
-
-                if (turmas[i]->id == id)
-                {
-                    printf("Digite a matricula: ");
-                    scanf("%d", &mat);
-                    printf("Digite o nome: ");
-                    scanf(" %[^\n]s", nome);
-
-                    matricula_aluno(turmas[i], mat, nome);
-                    printf("Aluno matriculado com sucesso!");
-                    break;
-                }
+                matricula_aluno(t, mat, nome);
+                printf("\nAluno matriculado com sucesso!");
             }
-
+            else
+            {
+                printf("Turma inexistente!");
+            }
             break;
         case 4:
             if (turmas[0] == NULL)
@@ -250,28 +222,16 @@ int main(void)
             printf("Digite o id da turma: ");
             scanf(" %c", &id);
 
-            for (int i = 0; i <= index; i++)
-            {
-                if (i == index)
-                {
-                    printf("\nTurma inexistente!\n");
-                    break;
-                }
-                if (turmas[i]->id == id)
-                {
-                    if (turmas[i]->alunos[0] != NULL)
-                    { // verifica se o aluno ja tem nota
-                        lanca_notas(turmas[i]);
-                        break;
-                    }
-                    else
-                    {
-                        printf("\nNao ha alunos matriculados nesta turma!\n");
-                        break;
-                    }
-                }
-            }
+            t = procura_turma(turmas, index, id);
 
+            if (t != NULL)
+            {
+                lanca_notas(t);
+            }
+            else
+            {
+                printf("\nTurma inexistente!\n");
+            }
             break;
         case 5:
             if (turmas[0] == NULL)
@@ -283,57 +243,18 @@ int main(void)
             printf("Digite o id da turma: ");
             scanf(" %c", &id);
 
-            for (int i = 0; i <= index; i++)
-            {
-                if (i == index)
-                {
-                    printf("\nTurma inexistente!\n");
-                    break;
-                }
-                if (turmas[i]->id == id)
-                {
-                    if (turmas[i]->alunos[0] != NULL)
-                    {
-                        imprime_alunos(turmas[i]);
-                        break;
-                    }
-                    else
-                    {
-                        printf("\nNao ha alunos matriculados nesta turma!\n");
-                        break;
-                    }
-                }
-            }
+            t = procura_turma(turmas, index, id);
 
+            if (t != NULL)
+            {
+                imprime_alunos(t);
+            }
+            else
+            {
+                printf("\nTurma inexistente!\n");
+            }
             break;
         case 6:
-            if (turmas[0] == NULL)
-            {
-                printf("Nao ha turmas cadastradas!\n");
-                break;
-            }
-            printf("Procurando por uma turma...\n");
-            printf("Digite o id da turma: ");
-            scanf(" %c", &id);
-
-            t = procura_turma(turmas, index, id);
-            if (t == 0)
-            {
-                break;
-            }
-
-            printf("Turma: %c\tVagas disponiveis: %d\nLista de alunos matriculados:\n", t->id, t->vagas);
-            for (int j = 0; j < MAX_VAGAS; j++)
-            {
-                if (t->alunos[j] != NULL)
-                {
-                    printf("%s\n", t->alunos[j]->nome);
-                    break;
-                }
-            }
-
-            break;
-        case 7:
             printf("Obrigado por usar este programa!");
 
             break;
@@ -349,7 +270,6 @@ int main(void)
             free(turmas[i]->alunos[j]);
         }
     }
-    
 
     free(turmas);
     free(t);
