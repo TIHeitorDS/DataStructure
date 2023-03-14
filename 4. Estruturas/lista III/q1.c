@@ -144,6 +144,11 @@ int main(void)
     int op, index = 0, mat = 0; // index vai controlar o limite do vetor turmas
     char id, *nome;
     nome = (char *)malloc(81 * sizeof(char));
+    if (t == NULL || nome == NULL)
+    {
+        printf("Memoria insuficiente!");
+        exit(1);
+    }
     printf("Bem-vindo ao Programa de Gerenciamento de Turmas!\n");
     printf("Este programa gerencia as turmas ofertadas, fornecendo as funcionalidades de matricula, lancamento de notas e listagem de alunos.\n");
     printf("Autor: Heitor Claudino\tVersao: 1.5\n\n");
